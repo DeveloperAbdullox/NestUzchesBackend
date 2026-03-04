@@ -3,10 +3,14 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Relation } from "type
 import { CourseSection } from "./courseSections.entity";
 import { CourseCategory } from "./courseCategory.entity";
 import { CourseLessons } from "./courseLessons.entity";
+import { CoursePurchased } from "./coursePurchased.entity";
 
 
 @Entity("Course")
 export class Course extends BaseModel {
+
+    @OneToMany(() => CoursePurchased, (purchased) => purchased.course)
+    coursePurchased: Relation<CoursePurchased[]>
 
     @OneToMany(() => CourseLessons, (lesson) => lesson.course)
     lessons: Relation<CourseLessons[]>
