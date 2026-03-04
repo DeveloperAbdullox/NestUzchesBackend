@@ -5,6 +5,7 @@ import { Column, Entity, OneToMany, Relation } from "typeorm";
 import { OtpCode } from "./otp.code.entity";
 import { UserLessons } from "src/features/common/entity/userLessons.entity";
 import { CoursePurchased } from "src/features/courses/entity/coursePurchased.entity";
+import { CourseLikes } from "src/features/courses/entity/courseLikes.entity";
 
 
 @Entity("User")
@@ -45,4 +46,7 @@ export class User extends BaseModel {
 
     @OneToMany(() => CoursePurchased, (purchased) => purchased.user)
     coursePurchased: Relation<CoursePurchased[]>
+
+    @OneToMany(() => CourseLikes, (likes) => likes.user)
+    courseLikes: Relation<CourseLikes[]>
 }

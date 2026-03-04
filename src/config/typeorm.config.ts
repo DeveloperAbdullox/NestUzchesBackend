@@ -6,7 +6,7 @@ export const typeormConfig: TypeOrmModuleOptions = {
     port: 5432,
     username: "postgres",
     password: "123",
-    database: "imtihon5_oy",
+    database: "uzchess_nestjs",
     autoLoadEntities: true,
     synchronize: true
 }

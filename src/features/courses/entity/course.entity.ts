@@ -4,10 +4,14 @@ import { CourseSection } from "./courseSections.entity";
 import { CourseCategory } from "./courseCategory.entity";
 import { CourseLessons } from "./courseLessons.entity";
 import { CoursePurchased } from "./coursePurchased.entity";
+import { CourseLikes } from "./courseLikes.entity";
 
 
 @Entity("Course")
 export class Course extends BaseModel {
+
+    @OneToMany(() => CourseLikes, (likes) => likes.course)
+    courseLikes: Relation<CourseLikes[]>
 
     @OneToMany(() => CoursePurchased, (purchased) => purchased.course)
     coursePurchased: Relation<CoursePurchased[]>
