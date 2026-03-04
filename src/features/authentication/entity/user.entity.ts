@@ -6,6 +6,7 @@ import { OtpCode } from "./otp.code.entity";
 import { UserLessons } from "src/features/common/entity/userLessons.entity";
 import { CoursePurchased } from "src/features/courses/entity/coursePurchased.entity";
 import { CourseLikes } from "src/features/courses/entity/courseLikes.entity";
+import { CourseRewiew } from "src/features/courses/entity/courseRewiew.entity";
 
 
 @Entity("User")
@@ -49,4 +50,7 @@ export class User extends BaseModel {
 
     @OneToMany(() => CourseLikes, (likes) => likes.user)
     courseLikes: Relation<CourseLikes[]>
+
+    @OneToMany(() => CourseRewiew, (rewiew) => rewiew.user)
+    courseRewiew: Relation<CourseRewiew[]>
 }

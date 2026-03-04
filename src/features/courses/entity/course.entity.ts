@@ -5,10 +5,14 @@ import { CourseCategory } from "./courseCategory.entity";
 import { CourseLessons } from "./courseLessons.entity";
 import { CoursePurchased } from "./coursePurchased.entity";
 import { CourseLikes } from "./courseLikes.entity";
+import { CourseRewiew } from "./courseRewiew.entity";
 
 
 @Entity("Course")
 export class Course extends BaseModel {
+
+    @OneToMany(() => CourseRewiew, (rewiew) => rewiew.course)
+    courseRewiew: Relation<CourseRewiew[]>
 
     @OneToMany(() => CourseLikes, (likes) => likes.course)
     courseLikes: Relation<CourseLikes[]>
