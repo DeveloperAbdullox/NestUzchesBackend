@@ -1,10 +1,19 @@
 import { BaseModel } from "src/core/base-model";
-import { Column, JoinColumn, ManyToOne, Relation } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Relation } from "typeorm";
 import { Course } from "./course.entity";
+import { CourseLessons } from "./courseLessons.entity";
 
+
+@Entity("CourseSection")
 export class CourseSection extends BaseModel {
 
-    @ManyToOne(() => Course, (course) => course.sections)
+    @OneToMany(() => CourseLessons, (lesson) => lesson.courseSections)
+    courseLessons: Relation<CourseLessons[]>
+
+    @Column()
+    courseId: number
+
+    @ManyToOne(() => Course, (course) => course.sections, {onDelete: "CASCADE"})
     @JoinColumn({name: "courseId"})
     course: Relation<Course>
 

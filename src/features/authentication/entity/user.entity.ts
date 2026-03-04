@@ -3,6 +3,7 @@ import { Role } from "src/core/enums/role";
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, OneToMany, Relation } from "typeorm";
 import { OtpCode } from "./otp.code.entity";
+import { UserLessons } from "src/features/common/entity/userLessons.entity";
 
 
 @Entity("User")
@@ -30,11 +31,14 @@ export class User extends BaseModel {
     birthDate: Date
 
     @Column({type: "boolean", default: false})
-    isVerified: string
+    isVerified: boolean
 
     @Column({type: "boolean", default: false})
-    isActive: string
+    isActive: boolean
 
     @OneToMany(() => OtpCode, (otp) => otp.user)
     otpCodes: Relation<OtpCode[]>
+
+    @OneToMany(() => UserLessons, (lesson) => lesson.user)
+    lessons: Relation<UserLessons[]>
 }
