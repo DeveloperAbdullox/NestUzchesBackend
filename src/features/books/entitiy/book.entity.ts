@@ -2,6 +2,7 @@ import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Relation } from "typeorm";
 import { BookCategory } from "./bookCategory.entity";
 import { BookLikes } from "./bookLikes.entity";
+import { BookRewiew } from "./bookRewiew.entity";
 
 @Entity("Book")
 export class Book extends BaseModel{
@@ -41,4 +42,7 @@ export class Book extends BaseModel{
 
     @OneToMany(() => BookLikes, (likes) => likes.book)
     bookLikes: Relation<BookLikes[]>
+
+    @OneToMany(() => BookRewiew, (rewiew) => rewiew.book)
+    bookRewiew: Relation<BookRewiew[]>
 }

@@ -8,6 +8,7 @@ import { CoursePurchased } from "src/features/courses/entity/coursePurchased.ent
 import { CourseLikes } from "src/features/courses/entity/courseLikes.entity";
 import { CourseRewiew } from "src/features/courses/entity/courseRewiew.entity";
 import { BookLikes } from "src/features/books/entitiy/bookLikes.entity";
+import { BookRewiew } from "src/features/books/entitiy/bookRewiew.entity";
 
 
 @Entity("User")
@@ -57,4 +58,7 @@ export class User extends BaseModel {
 
     @OneToMany(() => BookLikes, (likes) => likes.user)
     bookLikes: Relation<BookLikes[]>
+
+    @OneToMany(() => BookRewiew, (rewiew) => rewiew.user)
+    bookRewiew: Relation<BookRewiew[]>
 }
