@@ -1,9 +1,13 @@
 import { BaseModel } from "src/core/base-model";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany, Relation } from "typeorm";
+import { CourseSection } from "./courseSections.entity";
 
 
 @Entity("Course")
 export class Course extends BaseModel {
+
+    @OneToMany(() => CourseSection, (section) => section, {onDelete: "CASCADE"})
+    sections: Relation<CourseSection[]>
     
     @Column({length: 128})
     title: string
