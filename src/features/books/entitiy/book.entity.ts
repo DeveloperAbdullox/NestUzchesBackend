@@ -1,5 +1,7 @@
 import { BaseModel } from "src/core/base-model";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Relation } from "typeorm";
+import { BookCategory } from "./bookCategory.entity";
+import { BookLikes } from "./bookLikes.entity";
 
 @Entity("Book")
 export class Book extends BaseModel{
@@ -29,4 +31,14 @@ export class Book extends BaseModel{
 
     @Column({type: "date"})
     pubDate: Date
+
+    @Column()
+    categoryId: number
+
+    @ManyToOne(() => BookCategory, (category) => category.book, {onDelete: "CASCADE"})
+    @JoinColumn({name: "categoryId"})
+    category: Relation<BookCategory>
+
+    @OneToMany(() => BookLikes, (likes) => likes.book)
+    bookLikes: Relation<BookLikes[]>
 }
