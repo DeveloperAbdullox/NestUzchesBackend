@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Relation } from "type
 import { BookCategory } from "./bookCategory.entity";
 import { BookLikes } from "./bookLikes.entity";
 import { BookRewiew } from "./bookRewiew.entity";
+import { Author } from "src/features/common/entity/author.entity";
 
 @Entity("Book")
 export class Book extends BaseModel{
@@ -32,6 +33,13 @@ export class Book extends BaseModel{
 
     @Column({type: "date"})
     pubDate: Date
+
+    @Column()
+    authorId: number
+
+    @ManyToOne(() => Author, (author) => author.authors, {onDelete: "CASCADE"})
+    @JoinColumn({name: "authorId"})
+    author: Relation<Author>
 
     @Column()
     categoryId: number
